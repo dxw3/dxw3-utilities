@@ -3,7 +3,7 @@
  * Plugin Name:       dxw3 Utilities
  * Plugin URI:        https://dx-w3.com/wordpress-plugins/
  * Description:       Group all the plugins of the same author in one.
- * Version:           1.0.0
+ * Version:           1.1.0
  * Author:            dxw3
  * Author URI:        https://dx-w3.com
  * License:           GPL-2.0+
