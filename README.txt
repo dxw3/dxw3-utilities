@@ -2,7 +2,7 @@
 
  Plugin Name:       dxw3 Utilities
  Plugin URI:        https://dx-w3.com/wordpress-plugins/
- Description:       Utilities from the same author grouped in one.
+ Description:       Plugins from the same author grouped in one plugin.
  Version:           1.1.0
  Author:            dxw3
  Author URI:        https://dx-w3.com
@@ -16,9 +16,11 @@
 This plugin collects all the separate plugins from the same author into one utilities -plugin. 
 
 If you have a lot of plugins from the same author, this plugin helps you to keep them better organized. 
-After switching the plugin on, you will see only the utilities -plugin on the WordPress admin plugins -page. 
-The plugin adds a menu item on the bottom of the left hand side menu bar. You can see all the plugins on 
-this menu page and switch them on or off.
+After switching the plugin on, you can control the individual plugins of the same author on the dxw3 Utilities admin menu page. 
+You can see all the plugins on this menu page and switch them on or off. You can select the author you want to group on the same settings menu page. 
+The plugin author is indicated on the "Plugins" -menu page in the "Description" -column after the version number. 
+
+This plugin is especially useful in case you have several plugins that perform only minor tasks and which are developed by the same author.
 
 == Installation ==
 
