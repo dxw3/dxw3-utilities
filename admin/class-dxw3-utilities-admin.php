@@ -11,12 +11,21 @@ class Dxw3_Utilities_Admin {
 		$this->version = DXW3_VERSION;
 		$this->author = DXW3_AUTHOR;
 		
-		if( ! function_exists( 'get_plugins' ) ) { require_once ABSPATH . 'wp-admin/includes/plugin.php'; }
+		if( ! function_exists( 'get_plugins' ) ) { 
+			require_once ABSPATH . 'wp-admin/includes/plugin.php';
+		}
+		$utility_plugins = []; $utility_plugins_slugs = []; $enabled_plugins = [];
 		$all_plugins = get_plugins();
 		foreach( $all_plugins as $key => $plugin ) {
-			if( $plugin[ "Author" ] === $this->author && $plugin[ "Name" ] !== $this->plugin_name ) $utility_plugins[ $key ] = $plugin;
+			if( $plugin[ "Author" ] === $this->author && $plugin[ "Name" ] !== $this->plugin_name ) {
+				$utility_plugins[ $key ] = $plugin;
+				$slug = strtok( $key, '/' );
+				$utility_plugins_slugs[ $slug ] = strtok( $key, '/' );
+				if( is_plugin_active( $key ) ) $enabled_plugins[] = strtok( $key, '/' );
+			}
 		}
 		update_option( 'all_utility_plugins', $utility_plugins );
+		$this->dxw3_loop_enabled_plugins( $utility_plugins_slugs, $enabled_plugins );
 	}
 
 	public function enqueue_styles() {
@@ -61,18 +70,25 @@ class Dxw3_Utilities_Admin {
 		if( isset( $_POST[ 'plugins' ] ) ) {
 			$enabled_plugins = []; $utility_plugins = [];
 			$utility_plugins = get_option( 'dxw3_utility_plugins' );
-			$enabled_plugins = json_decode( stripslashes( $_POST[ 'plugins' ] ) );		
-			foreach( $utility_plugins as $utility_plugin => $utility_plugin_slug ) {
-				if( in_array( $utility_plugin, $enabled_plugins ) ) { 
-					update_option( $utility_plugin, 1 );
-					activate_plugin( $utility_plugin_slug );
-				} else {
-					update_option( $utility_plugin, 0 );
-					deactivate_plugins( $utility_plugin_slug );
-				}
+			$enabled_plugins = json_decode( stripslashes( $_POST[ 'plugins' ] ) );
+			$this->dxw3_loop_enabled_plugins( $utility_plugins, $enabled_plugins );
+			$refresh = get_option( 'dxw3_plugins_author' ) !== $_POST[ 'pluginsauthor' ] ? true : false;
+			update_option( 'dxw3_plugins_author', $_POST[ 'pluginsauthor' ] );
+		}
+		wp_send_json( $refresh );
+	}
+
+	private function dxw3_loop_enabled_plugins( $utility_plugins = [], $enabled_plugins = [] ) {
+		update_option('d',$utility_plugins); update_option('d2',$enabled_plugins);
+		foreach( $utility_plugins as $utility_plugin => $utility_plugin_slug ) {
+			if( in_array( $utility_plugin, $enabled_plugins ) ) { 
+				update_option( $utility_plugin, 1 );
+				activate_plugin( $utility_plugin_slug );
+			} else {
+				update_option( $utility_plugin, 0 );
+				deactivate_plugins( $utility_plugin_slug );
 			}
 		}
-		wp_send_json( $enabled_plugins );
 	}
 
 }

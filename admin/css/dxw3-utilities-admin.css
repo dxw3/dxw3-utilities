@@ -15,6 +15,10 @@
     margin-top: 10px;
 }
 
+#plugins_author {
+    width: 30%;
+}
+
 input[type="checkbox"].dxw3-ui-toggle {
     -webkit-appearance: none;
     -moz-appearance: none;

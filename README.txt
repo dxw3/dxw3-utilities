@@ -29,5 +29,10 @@ The plugin works automatically without configuration.
 
 == Changelog ==
 
+= 1.1.0 =
+- remove data from database on uninstall
+- add plugins from any author in settings
+- update plugin status on activation
+
 = 1.0.0 =
 - first release
