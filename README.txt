@@ -1,5 +1,5 @@
 === dxw3 Utilities ===
- Contributors: dxw3
+ Contributors:      dxw3
  Tags:              group plugins, hide plugins, manage plugins, simple, lightweight, organize admin
  Tested up to:      6.1
  Stable tag:        1.1.0
