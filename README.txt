@@ -1,6 +1,9 @@
-=== Plugin Name ===
-
- Plugin Name:       dxw3 Utilities
+=== dxw3 Utilities ===
+ Contributors: dxw3
+ Tags:              group plugins, hide plugins, manage plugins, simple, lightweight, organize admin
+ Tested up to:      6.1
+ Stable tag:        1.1.0
+ Requires PHP:      7.4
  Plugin URI:        https://dx-w3.com/wordpress-plugins/
  Description:       Plugins from the same author grouped in one plugin.
  Version:           1.1.0
