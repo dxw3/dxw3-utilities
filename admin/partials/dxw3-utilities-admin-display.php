@@ -7,7 +7,7 @@ $plugin_author = get_option( 'dxw3_plugins_author' );
 ?>
     <div id="dxw3-utilities-wrapper">
     <img src="<?php echo plugins_url( 'dxw3-utilities' ); ?>/images/dxw3_logo_sqr_sm.png">
-    <h3>Activation Settings for the Plugins Author:</h3><input id="plugins_author" value = "<?php echo $plugin_author; ?>"><br>
+    <h3>Activation Settings for the Plugins Author:</h3><input id="plugins_author" value = "<?php echo esc_attr( $plugin_author ); ?>"><br>
     <?php
     $slugs = [];
     foreach( $utility_plugins as $plugin_slug => $items ) {
@@ -15,8 +15,8 @@ $plugin_author = get_option( 'dxw3_plugins_author' );
             $slugs[ $slug ] = $plugin_slug;
         ?>
             <div class="onoff">
-            <input type="checkbox" class="dxw3-ui-toggle" id="<?php echo $slug; ?>" value="1" <?php echo ((int) get_option( $slug ) === 1) ? 'checked' : ''; ?>>
-            <label for="<?php echo $slug; ?>"><?php echo $items[ "Name" ]; ?></label>
+            <input type="checkbox" class="dxw3-ui-toggle" id="<?php echo esc_attr( $slug ); ?>" value="1" <?php echo ((int) get_option( $slug ) === 1) ? 'checked' : ''; ?>>
+            <label for="<?php echo esc_attr( $slug ); ?>"><?php echo esc_html( $items[ "Name" ] ); ?></label>
             </div>
         <?php
     }

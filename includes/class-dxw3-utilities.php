@@ -5,13 +5,11 @@ class Dxw3_Utilities {
 	protected $loader;
 	protected $plugin_name;
 	protected $version;
-	protected $author;
 
 	public function __construct() {
 		
 		$this->plugin_name = DXW3_NAME;
 		$this->version = DXW3_VERSION;
-		$this->author = DXW3_AUTHOR;
 
 		$this->load_dependencies();
 		$this->set_locale();
@@ -34,7 +32,7 @@ class Dxw3_Utilities {
 	}
 
 	private function define_admin_hooks() {
-		$plugin_admin = new Dxw3_Utilities_Admin( $this->get_plugin_name(), $this->get_version(), $this->get_plugin_author() );
+		$plugin_admin = new Dxw3_Utilities_Admin( $this->get_plugin_name(), $this->get_version() );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
 		$this->loader->add_action( 'admin_menu', $plugin_admin, 'dxw3_utilities_menu');
@@ -65,10 +63,6 @@ class Dxw3_Utilities {
 
 	public function get_version() {
 		return $this->version;
-	}
-
-	public function get_plugin_author() {
-		return $this->author;
 	}
 
 }

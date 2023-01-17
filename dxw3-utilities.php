@@ -16,11 +16,8 @@ if( ! defined( 'WPINC' ) ) { die; }
 if( ! function_exists( 'get_plugin_data' ) ) { require_once( ABSPATH . 'wp-admin/includes/plugin.php' ); }
 $nme = get_plugin_data( __FILE__ )[ 'Name' ]; // Plugin name
 $ver = get_plugin_data( __FILE__ )[ 'Version' ]; // Plugin version
-$ath = get_option( 'dxw3_plugins_author' ) ? get_option( 'dxw3_plugins_author' ) : get_plugin_data( __FILE__ )[ 'Author' ]; // Author field of the plugin determines if the plugin will be grouped
-
 defined( 'DXW3_NAME' ) or define( 'DXW3_NAME', $nme );
 defined( 'DXW3_VERSION' ) or define( 'DXW3_VERSION', $ver );
-defined( 'DXW3_AUTHOR' ) or define( 'DXW3_AUTHOR', strip_tags( $ath ) );
 
 function activate_dxw3_utilities() {
 	require_once plugin_dir_path( __FILE__ ) . 'includes/class-dxw3-utilities-activator.php';
