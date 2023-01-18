@@ -72,7 +72,7 @@ class Dxw3_Utilities_Admin {
 		if( isset( $_POST[ 'plugins' ] ) ) {
 			$enabled_plugins = []; $utility_plugins = [];
 			$utility_plugins = get_option( 'dxw3_utility_plugins' );
-			$enabled_plugins = map_deep( json_decode( stripslashes( $_POST[ 'plugins' ] ) ), 'sanitize_text_field' );
+			$enabled_plugins = array_map( 'sanitize_text_field', json_decode( stripslashes( $_POST[ 'plugins' ] ) ) );
 			$this->dxw3_loop_enabled_plugins( $utility_plugins, $enabled_plugins );
 			$author = sanitize_text_field( $_POST[ 'pluginsauthor' ] );
 			$refresh = get_option( 'dxw3_plugins_author' ) !== $author ? true : false;
