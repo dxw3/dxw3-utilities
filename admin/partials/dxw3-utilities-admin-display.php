@@ -6,7 +6,7 @@ $plugin_author = get_option( 'dxw3_plugins_author' );
 
 ?>
     <div id="dxw3-utilities-wrapper">
-    <img src="<?php echo plugins_url( 'dxw3-utilities' ); ?>/images/dxw3_logo_sqr_sm.png">
+    <img src="<?php echo esc_url( plugins_url( 'images/dxw3_logo_sqr_sm.png', dirname( __FILE__, 2 ) ) ); ?>">
     <h3>Activation Settings for the Plugins Author:</h3><input id="plugins_author" value = "<?php echo esc_attr( $plugin_author ); ?>"><br>
     <?php
     $slugs = [];
