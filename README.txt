@@ -1,6 +1,6 @@
-=== dxw3 Utilities ===
+=== Group the Plugins ===
  Contributors:      dxw3
- Tags:              group plugins, hide plugins, manage plugins, simple, lightweight, organize admin
+ Tags:              group plugins, hide plugins, manage plugins, simple use, lightweight, organize admin
  Tested up to:      6.1
  Stable tag:        1.1.1
  Requires PHP:      7.4
@@ -14,14 +14,14 @@
  Text Domain:       dxw3-utilities
  Domain Path:       /languages
 
+The plugin collects all the plugins from the same *author* together and hides them from the plugins page. Manage them in the settings screen of the plugin.
+
 == Description ==
 
-This plugin collects all the separate plugins from the same author into one utilities -plugin. 
-
 If you have a lot of plugins from the same author, this plugin helps you to keep them better organized. 
-After switching the plugin on, you can control the individual plugins of the same author on the dxw3 Utilities admin menu page. 
-You can see all the plugins on this menu page and switch them on or off. You can select the author you want to group on the same settings menu page. 
-The plugin author is indicated on the "Plugins" -menu page in the "Description" -column after the version number. 
+After switching the plugin on, you can set the author's name on the plugin's settings page located at Grouped Plugins menu item. 
+All plugins from this author will be hidden from the plugins view. However, you can see all the plugins on the menu page and switch them on or off.
+You can find the plugin author -field used by this plugin on the "Plugins" -menu page in the "Description" -column after the version number.
 
 This plugin is especially useful in case you have several plugins that perform only minor tasks and which are developed by the same author.
 

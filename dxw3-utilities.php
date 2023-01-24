@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name:       dxw3 Utilities
+ * Plugin Name:       Group the Plugins
  * Plugin URI:        https://dx-w3.com/wordpress-plugins/
  * Description:       Group all the plugins of the same author in one.
  * Version:           1.1.1
