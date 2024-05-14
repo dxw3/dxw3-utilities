@@ -1,4 +1,12 @@
 <?php
+/**
+ * Register all actions and filters for the plugin.
+ *
+ * Maintain a list of all hooks that are registered throughout
+ * the plugin, and register them with the WordPress API. Call the
+ * run function to execute the list of actions and filters.
+ *
+ */
 
 class Dxw3_Utilities_Loader {
 
@@ -12,14 +20,17 @@ class Dxw3_Utilities_Loader {
 
 	}
 
+	// Add a new action to the collection to be registered with WordPress.
 	public function add_action( $hook, $component, $callback, $priority = 10, $accepted_args = 1 ) {
 		$this->actions = $this->add( $this->actions, $hook, $component, $callback, $priority, $accepted_args );
 	}
-
+	
+	// Add a new filter to the collection to be registered with WordPress.
 	public function add_filter( $hook, $component, $callback, $priority = 10, $accepted_args = 1 ) {
 		$this->filters = $this->add( $this->filters, $hook, $component, $callback, $priority, $accepted_args );
 	}
 
+	// A utility function that is used to register the actions and hooks into a single collection.
 	private function add( $hooks, $hook, $component, $callback, $priority, $accepted_args ) {
 
 		$hooks[] = array(

@@ -9,11 +9,13 @@ class Dxw3_Utilities_Admin {
 	public function __construct() {
 		$this->plugin_name = DXW3_NAME;
 		$this->version = DXW3_VERSION;
-		$this->author = get_option( 'dxw3_plugins_author' );
+		$this->author = get_option( 'dxw3_plugins_author' );														// Get previously save plugin author name
 		
-		if( ! function_exists( 'get_plugins' ) ) { 
+		if( ! function_exists( 'get_plugins' ) ) { 																	// Make sure plugins can be read
 			require_once ABSPATH . 'wp-admin/includes/plugin.php';
 		}
+
+		// Get and set current plugins initial status
 		$utility_plugins = []; $utility_plugins_slugs = []; $enabled_plugins = [];
 		$all_plugins = get_plugins();
 		foreach( $all_plugins as $key => $plugin ) {
@@ -44,6 +46,7 @@ class Dxw3_Utilities_Admin {
 		return $all_plugins;
 	}
 
+	// Add settings link for this plugin
 	public function dxw3_action_links( $actions, $plugin_file ) {
 		if( 'dxw3-utilities/dxw3-utilities.php' === $plugin_file ) {
 			$actions[] = '<a href="'. admin_url( 'admin.php?page=dxw3-utilities' ) .'">Settings</a>';
@@ -67,6 +70,7 @@ class Dxw3_Utilities_Admin {
 		include_once 'partials/dxw3-utilities-admin-display.php';
 	}
 
+	// Get and save author and plugin status changes by the user in the settings page
 	public function dxw3_save_enabled_plugins() {
 		check_ajax_referer( 'author_input', 'security' );
 		if( isset( $_POST[ 'plugins' ] ) ) {
@@ -81,6 +85,7 @@ class Dxw3_Utilities_Admin {
 		wp_send_json( $refresh );
 	}
 
+	// Return enabled plugins from the list of all author's plugins
 	private function dxw3_loop_enabled_plugins( $utility_plugins = [], $enabled_plugins = [] ) {
 
 		foreach( $utility_plugins as $utility_plugin => $utility_plugin_slug ) {

@@ -1,11 +1,18 @@
 <?php
-
+/**
+ * The core plugin class includes attributes and functions used across both the
+ * public-facing side of the site and the admin area. Public files included for future use
+ * as at the moment the plugin is meant to be used in the admin area.
+ */
 class Dxw3_Utilities {
 
 	protected $loader;
 	protected $plugin_name;
 	protected $version;
 
+	
+	
+	// Define the core functionality of the plugin with dependencies and hooks.
 	public function __construct() {
 		
 		$this->plugin_name = DXW3_NAME;
@@ -35,12 +42,12 @@ class Dxw3_Utilities {
 		$plugin_admin = new Dxw3_Utilities_Admin( $this->get_plugin_name(), $this->get_version() );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
-		$this->loader->add_action( 'admin_menu', $plugin_admin, 'dxw3_utilities_menu');
+		$this->loader->add_action( 'admin_menu', $plugin_admin, 'dxw3_utilities_menu');								// Add menu for on/off switches of plugins
 
 		$this->loader->add_action( 'wp_ajax_enabled_plugins', $plugin_admin, 'dxw3_save_enabled_plugins' );
 
-		$this->loader->add_filter( 'all_plugins', $plugin_admin, 'dxw3_hide_plugins', 1, 99 );
-		$this->loader->add_filter( 'plugin_action_links', $plugin_admin, 'dxw3_action_links', 10, 2 );
+		$this->loader->add_filter( 'all_plugins', $plugin_admin, 'dxw3_hide_plugins', 1, 99 );						// Hide deactivated
+		$this->loader->add_filter( 'plugin_action_links', $plugin_admin, 'dxw3_action_links', 10, 2 );				// Add link to jump to the settings of the plugin
 	}
 
 	private function define_public_hooks() {

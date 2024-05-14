@@ -2,11 +2,11 @@
  Contributors:      dxw3
  Tags:              group plugins, hide plugins, manage plugins, simple use, lightweight, organize admin
  Tested up to:      6.1
- Stable tag:        1.1.1
+ Stable tag:        1.1.2
  Requires PHP:      7.4
  Plugin URI:        https://dx-w3.com/wordpress-plugins/
  Description:       Plugins from the same author grouped in one plugin.
- Version:           1.1.1
+ Version:           1.1.2
  Author:            dxw3
  Author URI:        https://dx-w3.com
  License:           GPL-2.0+
@@ -33,6 +33,9 @@ This plugin is especially useful in case you have several plugins that perform o
 The plugin works automatically without configuration.
 
 == Changelog ==
+
+= 1.1.2 =
+- changed description and commenting
 
 = 1.1.1 =
 - security enhancements

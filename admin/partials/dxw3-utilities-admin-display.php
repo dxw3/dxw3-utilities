@@ -1,4 +1,7 @@
 <?php
+/**
+ * Settings page for the toggle buttons and author name
+ */
 
 $utility_plugins = [];
 $utility_plugins = is_array( get_option( 'all_utility_plugins' ) ) ? get_option( 'all_utility_plugins' ) : [];

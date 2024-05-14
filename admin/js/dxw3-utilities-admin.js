@@ -1,15 +1,22 @@
 (function ( $ ) {
 	'use strict';
-
+	
+	/**
+	 * Handling of the save status of the toggle buttons and author name in the admin
+	 */
 	$(function () {
 		$('#dxw3_utilities_save').click(function () {
 			let plugins = []; let pluginsAuthor = '';
 			$("input[type='checkbox'].dxw3-ui-toggle:checked").each(function () {
 				plugins.push( $( this ).attr( 'id' ) );
 			});
+
+			// Get the author of the plugins to be grouped
 			pluginsAuthor = $( '#plugins_author' ).val();
 			if( typeof pluginsAuthor !== 'string' ) pluginsAuthor = '';
-			plugins = JSON.stringify( plugins );
+
+			// Send toggle status to PHP
+			plugins = JSON.stringify( plugins );			
 			$.ajax({
 				type: 'POST',
 				dataType: 'json',
@@ -40,7 +47,7 @@
 					}, 2000);
 				},
 				error: function (res) {
-					console.log( "error: " + JSON.stringify( res ) );
+					//console.log( "error: " + JSON.stringify( res ) );
 				}
 			});
 		});

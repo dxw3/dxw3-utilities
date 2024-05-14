@@ -3,7 +3,7 @@
  * Plugin Name:       Group the Plugins
  * Plugin URI:        https://dx-w3.com/wordpress-plugins/
  * Description:       Group all the plugins of the same author in one.
- * Version:           1.1.1
+ * Version:           1.1.2
  * Author:            dxw3
  * Author URI:        https://dx-w3.com
  * License:           GPL-2.0+
@@ -13,9 +13,9 @@
  */
 
 if( ! defined( 'WPINC' ) ) { die; }
-if( ! function_exists( 'get_plugin_data' ) ) { require_once( ABSPATH . 'wp-admin/includes/plugin.php' ); }
-$nme = get_plugin_data( __FILE__ )[ 'Name' ]; // Plugin name
-$ver = get_plugin_data( __FILE__ )[ 'Version' ]; // Plugin version
+if( ! function_exists( 'get_plugin_data' ) ) require_once( ABSPATH . 'wp-admin/includes/plugin.php' );		// Required for getting the name and the version 
+$nme = get_plugin_data( __FILE__ )[ 'Name' ]; 																// Get plugin name from the header comment block
+$ver = get_plugin_data( __FILE__ )[ 'Version' ]; 															// Get plugin version from the header comment block
 defined( 'DXW3_NAME' ) or define( 'DXW3_NAME', $nme );
 defined( 'DXW3_VERSION' ) or define( 'DXW3_VERSION', $ver );
 
@@ -32,13 +32,14 @@ function deactivate_dxw3_utilities() {
 register_activation_hook( __FILE__, 'activate_dxw3_utilities' );
 register_deactivation_hook( __FILE__, 'deactivate_dxw3_utilities' );
 
+
+
+// The plugin class that defines the site hooks.
 require plugin_dir_path( __FILE__ ) . 'includes/class-dxw3-utilities.php';
 
 
 function run_dxw3_utilities() {
-
 	$plugin = new Dxw3_Utilities();
 	$plugin->run();
-
 }
 run_dxw3_utilities();

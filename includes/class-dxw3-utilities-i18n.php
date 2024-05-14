@@ -1,4 +1,7 @@
 <?php
+/** 
+ *  Internationalization file for the plugin.
+ */
 
 class Dxw3_Utilities_i18n {
 
