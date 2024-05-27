@@ -3,7 +3,7 @@
  * Plugin Name:       Group the Plugins
  * Plugin URI:        https://dx-w3.com/wordpress-plugins/
  * Description:       Group all the plugins of the same author in one.
- * Version:           1.1.2
+ * Version:           1.2.0
  * Author:            dxw3
  * Author URI:        https://dx-w3.com
  * License:           GPL-2.0+

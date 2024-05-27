@@ -6,7 +6,6 @@
 $utility_plugins = [];
 $utility_plugins = is_array( get_option( 'all_utility_plugins' ) ) ? get_option( 'all_utility_plugins' ) : [];
 $plugin_author = get_option( 'dxw3_plugins_author' );
-
 ?>
     <div id="dxw3-utilities-wrapper">
     <img src="<?php echo esc_url( plugins_url( 'images/dxw3_logo_sqr_sm.png', dirname( __FILE__, 2 ) ) ); ?>">

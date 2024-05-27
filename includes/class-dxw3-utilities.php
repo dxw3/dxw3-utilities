@@ -45,9 +45,10 @@ class Dxw3_Utilities {
 		$this->loader->add_action( 'admin_menu', $plugin_admin, 'dxw3_utilities_menu');								// Add menu for on/off switches of plugins
 
 		$this->loader->add_action( 'wp_ajax_enabled_plugins', $plugin_admin, 'dxw3_save_enabled_plugins' );
-
-		$this->loader->add_filter( 'all_plugins', $plugin_admin, 'dxw3_hide_plugins', 1, 99 );						// Hide deactivated
-		$this->loader->add_filter( 'plugin_action_links', $plugin_admin, 'dxw3_action_links', 10, 2 );				// Add link to jump to the settings of the plugin
+		
+		$this->loader->add_filter( 'all_plugins', $plugin_admin, 'dxw3_hide_plugins', 1, 99 );						// Hide the selected author's plugins
+		$this->loader->add_filter( 'plugin_action_links', $plugin_admin, 'dxw3_action_links', 10, 2 );				// Add link to jump to the settings of the plugin and open quick toggles
+		$this->loader->add_action( 'after_plugin_row_dxw3-utilities/dxw3-utilities.php', $plugin_admin, 'dxw3_show_hide_grouped_plugins', 10, 3 );  // Show hide quick toggles container
 	}
 
 	private function define_public_hooks() {

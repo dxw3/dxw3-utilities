@@ -11,12 +11,27 @@
     margin-left: 150px;
 }
 
-#dxw3-utilities-wrapper .onoff {
+#dxw3-utilities-wrapper .onoff, #dxw3-utilities-wrapper-quick .onoff {
     margin-top: 10px;
 }
 
 #plugins_author {
     width: 30%;
+}
+
+.dxw3-toggles {
+    cursor: pointer;
+    color: darkred;
+    margin-top: 5px;
+}
+
+.toggles-hidden {
+    display: none;
+}
+
+.onoff label {
+    width: 25%;
+    display: inline-block;
 }
 
 input[type="checkbox"].dxw3-ui-toggle {
@@ -98,8 +113,10 @@ input[type="checkbox"].dxw3-ui-toggle:checked:after {
     cursor: pointer;
     background: darkblue;
     color: white;
-    padding: 5px 10px;
-    width: 100px;
+    padding: 8px 10px;
+    width: 110px;
+    display: inline-block;
+    text-align: center;
 }
 
 #dxw3_utilities_save.saved {
