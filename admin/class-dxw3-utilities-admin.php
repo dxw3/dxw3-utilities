@@ -9,7 +9,7 @@ class Dxw3_Utilities_Admin {
 	public function __construct() {
 		$this->plugin_name = DXW3_NAME;
 		$this->version = DXW3_VERSION;
-		$this->author = get_option( 'dxw3_plugins_author' );														// Get previously save plugin author name
+		$this->author = get_option( 'dxw3_plugins_author' );														// Get previously saved plugin author name
 		
 		if( ! function_exists( 'get_plugins' ) ) { 																	// Make sure plugins can be read
 			require_once ABSPATH . 'wp-admin/includes/plugin.php';
@@ -36,9 +36,10 @@ class Dxw3_Utilities_Admin {
 
 	public function enqueue_scripts() {
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/dxw3-utilities-admin.js', array( 'jquery' ), $this->version, false );
-		wp_localize_script( $this->plugin_name, 'nce', array( 'sec' => wp_create_nonce( 'author_input' ) ) );
+		wp_localize_script( $this->plugin_name, 'nce', array( 'sec' => wp_create_nonce( 'author_input' ) ) );			// Add nonce for ajax security
 	}
 
+	// Selected author's plugins need to be hidden
 	public function dxw3_hide_plugins( $all_plugins ) {		
 		$hidden = get_option( 'dxw3_utility_plugins' );
 		if( ! is_array( $hidden ) ) $hidden = [];
@@ -46,12 +47,43 @@ class Dxw3_Utilities_Admin {
 		return $all_plugins;
 	}
 
-	// Add settings link for this plugin
+	// Show quick toggles under the plugin name
+	public function dxw3_show_hide_grouped_plugins( $plugin_file, $plugin_data, $status ) {
+		include_once 'partials/dxw3-utilities-admin-display-quick.php';
+	}
+
+	// Add settings link and toggeles open/closefor this plugin
 	public function dxw3_action_links( $actions, $plugin_file ) {
 		if( 'dxw3-utilities/dxw3-utilities.php' === $plugin_file ) {
+			$author = $this->get_selected_author();
+			$grouped_plugins = $this->get_current_grouped_plugins_files();
+			$updates = $this->get_all_update_files();
+			if( array_intersect( $grouped_plugins, $updates ) ) $updates_exist = '<div>new updates available</div>';
+			else $updates_exist = '';
 			$actions[] = '<a href="'. admin_url( 'admin.php?page=dxw3-utilities' ) .'">Settings</a>';
+			$actions[] = '<div class="dxw3-toggles">' . $author . ' - <span>open</span><span class="toggles-hidden">close</span> toggles</div>' . $updates_exist;
 		}
 		return $actions;
+	}
+
+	private function get_selected_author() {
+		$author = get_option( 'dxw3_plugins_author' );
+		return $author;
+	}
+
+	private function get_current_grouped_plugins_files() {
+		$utility_plugins = [];
+		$utility_plugins = is_array( get_option( 'all_utility_plugins' ) ) ? get_option( 'all_utility_plugins' ) : [];
+		$utility_plugins = array_keys( $utility_plugins );
+		return $utility_plugins;
+	}
+
+	// Get the pending updates for all author's plugins
+	private function get_all_update_files() {
+		$updates = [];
+		$updates = get_plugin_updates();
+		$updates = array_keys( $updates );
+		return $updates;
 	}
 
 	public function dxw3_utilities_menu() {
@@ -66,6 +98,7 @@ class Dxw3_Utilities_Admin {
 		);
 	}
 
+	// UI for the separate settings page containing the selected author
 	public function dxw3_utility_plugins_settings() {
 		include_once 'partials/dxw3-utilities-admin-display.php';
 	}
@@ -78,9 +111,9 @@ class Dxw3_Utilities_Admin {
 			$utility_plugins = get_option( 'dxw3_utility_plugins' );
 			$enabled_plugins = array_map( 'sanitize_text_field', json_decode( stripslashes( $_POST[ 'plugins' ] ) ) );
 			$this->dxw3_loop_enabled_plugins( $utility_plugins, $enabled_plugins );
-			$author = sanitize_text_field( $_POST[ 'pluginsauthor' ] );
+			$author = isset( $_POST[ 'pluginsauthor' ] ) ? sanitize_text_field( $_POST[ 'pluginsauthor' ] ) : get_option( 'dxw3_plugins_author' );
 			$refresh = get_option( 'dxw3_plugins_author' ) !== $author ? true : false;
-			update_option( 'dxw3_plugins_author', $author );
+			if( $refresh ) update_option( 'dxw3_plugins_author', $author );
 		}
 		wp_send_json( $refresh );
 	}
