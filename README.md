@@ -28,4 +28,3 @@ Based mainly on PHP and jQuery.
 
 Key in the name of the author of the plugins that you want to be grouped on the settings page. You can find the toggle switches on the same page. 
 In addition, there is a toggle container on the plugins page under the name of this plugin Group the Plugins. 
-
