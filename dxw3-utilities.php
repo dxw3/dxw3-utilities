@@ -3,7 +3,7 @@
  * Plugin Name:       Group the Plugins
  * Plugin URI:        https://dx-w3.com/wordpress-plugins/
  * Description:       Group all the plugins of the same author in one.
- * Version:           1.2.0
+ * Version:           1.2.1
  * Author:            dxw3
  * Author URI:        https://dx-w3.com
  * License:           GPL-2.0+
@@ -31,8 +31,6 @@ function deactivate_dxw3_utilities() {
 
 register_activation_hook( __FILE__, 'activate_dxw3_utilities' );
 register_deactivation_hook( __FILE__, 'deactivate_dxw3_utilities' );
-
-
 
 // The plugin class that defines the site hooks.
 require plugin_dir_path( __FILE__ ) . 'includes/class-dxw3-utilities.php';

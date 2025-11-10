@@ -81,10 +81,17 @@ class Dxw3_Utilities_Admin {
 	// Get the pending updates for all author's plugins
 	private function get_all_update_files() {
 		$updates = [];
-		if( function_exists( 'get_plugin_updates' ) ) {
+
+		// Make sure the core admin update function is loaded
+		if ( ! function_exists( 'get_plugin_updates' ) ) {
+			require_once ABSPATH . 'wp-admin/includes/update.php';
+		}
+
+		if ( function_exists( 'get_plugin_updates' ) ) {
 			$updates = get_plugin_updates();
 			$updates = array_keys( $updates );
 		}
+
 		return $updates;
 	}
 
