@@ -91,7 +91,6 @@ class Dxw3_Utilities_Admin {
 			$updates = get_plugin_updates();
 			$updates = array_keys( $updates );
 		}
-
 		return $updates;
 	}
 
